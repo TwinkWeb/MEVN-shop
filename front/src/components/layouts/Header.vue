@@ -2,6 +2,7 @@
   <header class="header">
     <div class="header__left">LOGO</div>
     <div class="header__right">
+      <router-link to="/cart">Cart {{ cartCount }}</router-link>
       <ul class="nav">
         <li class="nav__link" v-for="(category, key) in categories" :key="key">
           <router-link :to="`category/${category.id}`">{{
@@ -19,6 +20,10 @@ export default {
     categories: {
       type: Array,
       default: () => [],
+    },
+    cartCount: {
+      type: Number,
+      default: () => 0,
     },
   },
 }

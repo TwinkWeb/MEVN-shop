@@ -1,4 +1,4 @@
-import { getProduct, getProducts } from '@/services/product.service'
+import { getProduct, getProducts } from '@/services/products.service'
 
 const mutations = {
   getProduct(state, product) {

@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
 })
 
 routes.forEach((item) => {
-  console.log(item)
   app.use(`/${item}`, require(`./src/routes/${item}`))
 })
 //объявим наши роуты

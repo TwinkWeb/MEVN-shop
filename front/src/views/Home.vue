@@ -7,12 +7,14 @@
       :title="product.title"
       :price="product.price"
       :imageUrl="product.imageUrl"
+      @addToCart="addToCart(product)"
+      :inCart="cartItemsIDs.includes(product._id)"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'Home',
   components: {
@@ -21,15 +23,20 @@ export default {
   computed: {
     ...mapGetters({
       products: 'products',
+      cartItems: 'cartItems',
     }),
+    cartItemsIDs: ({ cartItems }) => cartItems.map(({ _id }) => _id),
   },
-  mounted() {
-    this.fetchProducts()
+  async mounted() {
+    await this.fetchProducts()
     console.log(this.products)
   },
   methods: {
     ...mapActions({
       fetchProducts: 'fetchProducts',
+    }),
+    ...mapMutations({
+      addToCart: 'addToCart',
     }),
   },
 }

@@ -1,23 +1,31 @@
 <template>
   <div id="app">
-    <MevnHeader :categories="categories" />
+    <MevnHeader :categories="categories" :cartCount="cartCount" />
     <router-view />
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'App',
+  mounted() {
+    this.fetchCategories()
+  },
+  methods: {
+    ...mapActions({
+      fetchCategories: 'fetchCategories',
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      categories: 'categories',
+      cartCount: 'cartCount',
+    }),
+  },
   components: {
     MevnHeader: () => import('@/components/layouts/Header'),
   },
-  data: () => ({
-    categories: [
-      { id: 1, title: 'PS4' },
-      { id: 2, title: 'XBOX' },
-      { id: 3, title: 'Nintendo' },
-    ],
-  }),
 }
 </script>
 

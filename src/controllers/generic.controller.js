@@ -10,7 +10,6 @@ const genericCrud = (model) => ({
     }
   },
   async getAll(_, res) {
-    console.log('sdasdsa')
     try {
       const items = await model.find()
       return res.status(200).send(items)
